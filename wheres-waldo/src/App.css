@@ -1,0 +1,48 @@
+html,
+body {
+  background-color: white;
+  margin: 0;
+}
+img {
+  width: 100%;
+}
+.App {
+  font-size: 2em;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0px;
+  font-size: 3rem;
+  background-color: rgb(255,255,255,.6);
+  color: black;
+  padding: 15px 0px;
+  border-bottom: 2px solid black;
+  box-sizing: border-box;
+}
+.timer {
+}
+.waldo,.wizard,.odlaw {
+  height: 5rem;
+  width: 5rem;
+  background-color: white;
+  margin: 0px 10px;
+}
+.footer {
+  display: flex;
+  justify-content: center;
+  align-self: center;}
+
+.githubLink {
+
+  text-decoration: none;
+  color: black;
+  transition: 0.1s ease;
+}
+.githubLink:hover {
+  transition: 0.1s ease;
+  transform: scale(1.3);
+}
