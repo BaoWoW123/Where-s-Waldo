@@ -1,5 +1,6 @@
 import React from "react";
 import waldo from "../images/waldo.jpg";
+import Home from "./Home";
 import SelectTarget from "./Targets";
 
 const Image = (props) => {
@@ -18,6 +19,7 @@ const Image = (props) => {
   return (
     <div className="waldoImgWrapper">
       <img className="waldoImg" src={waldo} onClick={selectTarget} />
+      <Home />
       <SelectTarget />
     </div>
   );
