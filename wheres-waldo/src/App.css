@@ -22,6 +22,7 @@ img {
   padding: 15px 0px;
   border-bottom: 2px solid black;
   box-sizing: border-box;
+  z-index: 1;
 }
 
 .main {
@@ -84,6 +85,10 @@ img {
   width: 5rem;
   background-color: white;
   margin: 0px 10px;
+}
+
+.waldoImgWrapper {
+  position: relative;
 }
 
 .targetsDiv {
