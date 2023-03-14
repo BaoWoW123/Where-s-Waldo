@@ -4,9 +4,6 @@ import wizard from '../images/wizard.png'
 import odlaw from '../images/odlaw.png';
 const Header = (props) => {
 
-    const updateTimer = () => {
-
-    }
     return (
         <div className="header">
             <div className="timer">

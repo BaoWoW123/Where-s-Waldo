@@ -3,19 +3,17 @@ import React, { useEffect, useState } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Image from "./components/image";
+import SelectTarget from "./components/Targets";
 
 const App = () => {
   let [time, setTime] = useState(0);
   let [coords, setCoords] = useState([]);
-  let targets = [
+  let [start, setStart] = useState(false);
+  let [targets, setTargets] = useState([
     { name: "odlaw", coords: [10, 78], found: false },
     { name: "waldo", coords: [28, 47], found: false },
     { name: "wizard", coords: [96, 94], found: false },
-  ];
-
-  const refreshTime = () => {
-    setTime((time += 1));
-  };
+  ]);
 
   const updateCoords = (e) => {
     setCoords((coords = e));
@@ -30,31 +28,51 @@ const App = () => {
       margin[1] = Math.abs(targets[i].coords[1] - coords[1]);
       if (margin[0] <= 3 && margin[1] <= 3) {
         console.log("found");
-        return (targets[i].found = true);
+        //modified state directly without setting
+        return targets[i].found = true;
       }
     }
   };
 
-  /* Run after startGameBtn clicked
-   const startTime = () => {
-    setTime(time+=1)
-  }
+  /* const updateTargets = (i) => {
+    let tempArr = targets;
+    let newTarget = targets[i];
+    newTarget.found = true;
+    tempArr.splice(i,1, newTarget)
+    setTargets(tempArr)
+  } */
+
+  //Run after startGameBtn at Home.js clicked
+  const startTime = () => {
+    setStart((start = true));
+  };
 
   const timer = () => {
-    setInterval(startTime, 1000)
-  } */
+    setTime((time += 1));
+  };
 
   useEffect(() => {
     //UPDATE when image shows, run timer
-    let interval = setInterval(refreshTime, 1000);
-    return () => clearInterval(interval);
-  }, [time]);
+    let is = targets.every(function (target) {
+      console.log(target)
+      return target.found;
+    });
+    console.log(is);
+    if (targets.every((target) => target.found)) {
+      console.log("targets found");
+      return setStart((start = false));
+    }
+    else if (start === true) {
+      let interval = setInterval(timer, 1000);
+      return () => clearInterval(interval);
+    }
+  });
 
   return (
     <div className="App">
       <Header time={time} />
       <div className="main" />
-      <Image updateCoords={updateCoords} /* startTime={startTime} */ />
+      <Image updateCoords={updateCoords} startTime={startTime} />
       <div />
       <Footer />
     </div>

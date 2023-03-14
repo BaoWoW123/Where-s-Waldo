@@ -19,7 +19,7 @@ const Image = (props) => {
   return (
     <div className="waldoImgWrapper">
       <img className="waldoImg" src={waldo} onClick={selectTarget} />
-      <Home />
+      <Home startTime={props.startTime}/>
       <SelectTarget />
     </div>
   );
