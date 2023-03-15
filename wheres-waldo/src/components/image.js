@@ -8,19 +8,24 @@ const Image = (props) => {
     // updates coords & shows targetsDiv
     let x = Math.round((e.pageX / e.target.clientWidth) * 100);
     let y = Math.round((e.pageY / e.target.clientHeight) * 100);
+    let edgeX;
+    let edgeY;
     props.updateCoords([x, y]);
-
+    //prevents targetsDiv appearing outside of image
+    if (x >= 90) edgeX = 0.9 * e.pageX;
+    if (y >= 90) edgeY = 0.6 * e.pageY;
+    if (y <= 20) edgeY = 0.6 * e.pageY;
     const targetsDiv = document.querySelector(".targetsDiv");
     targetsDiv.className = "targetsDiv";
-    targetsDiv.style.top = `${e.pageY - 200}px`;
-    targetsDiv.style.left = `${e.pageX + 30}px`;
+    targetsDiv.style.top = `${edgeY || e.pageY - 200}px`;
+    targetsDiv.style.left = `${edgeX || e.pageX + 30}px`;
   };
 
   return (
     <div className="waldoImgWrapper">
       <img className="waldoImg" src={waldo} onClick={selectTarget} />
-      <Home startTime={props.startTime}/>
-      <SelectTarget />
+      <Home startTime={props.startTime} />
+      <SelectTarget selectTarget={props.selectTarget} />
     </div>
   );
 };
