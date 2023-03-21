@@ -27,6 +27,7 @@ img {
 
 .main {
   position: relative;
+  height: 100vh;
 }
 .home {
   position: absolute;
@@ -60,6 +61,23 @@ img {
   transition: 0.15s ease;
 }
 
+.username {
+  display: flex;
+  height: 2rem;
+  padding-bottom: 10px;
+  font-size: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  height: 2rem;
+  border: 2px solid black;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  width: 10rem;
+}
+
 .startGameBtn {
   background-color: none;
   border: 2px solid black;
@@ -70,14 +88,31 @@ img {
   transition: 0.15s ease;
 }
 
-.homeTargets > img:hover,
 .startGameBtn:hover {
   transform: scale(1.1);
   transition: 0.15s ease;
 }
-.timer {
+
+.scoreboardWrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: lightblue;
+  height: 100%;
 }
 
+.scoreboard {
+  text-align: center;
+  background-color: none;
+  width: 70vw;
+}
+
+.playerInfo {
+  border: 1px solid black;
+}
+tr {
+  background-color: white;
+}
 .waldo,
 .wizard,
 .odlaw {

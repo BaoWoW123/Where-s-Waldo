@@ -24,7 +24,12 @@ const Image = (props) => {
   return (
     <div className="waldoImgWrapper">
       <img className="waldoImg" src={waldo} onClick={selectTarget} />
-      <Home startTime={props.startTime} />
+      <Home
+        startTime={props.startTime}
+        time={props.time}
+        start={props.start}
+        saveScore={props.saveScore}
+      />
       <SelectTarget selectTarget={props.selectTarget} />
     </div>
   );
