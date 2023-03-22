@@ -9,13 +9,11 @@ import Scoreboard from "./components/Scoreboard";
 import {
   collection,
   doc,
-  getDoc,
   getDocs,
   limit,
   orderBy,
   query,
   setDoc,
-  where,
 } from "firebase/firestore";
 import db from "./firebase";
 
@@ -79,7 +77,7 @@ const App = () => {
   };
 
   const loadScoreboard = async () => {
-    console.log('running')
+    console.log('loading board')
     const tempArr = [];
     const collectionRef = await collection(db, "scores");
     const q = query(collectionRef, orderBy("score", "asc"), limit(20));
@@ -88,19 +86,17 @@ const App = () => {
       tempArr.push(doc.data());
     });
     setScores((scores = tempArr));
-    if (targets.every((target) => target.found)) {
-      targets.forEach((target) => (target.found = false));
-    }
   };
 
-  useEffect(() => {
+  useEffect(() => { //targets state doesnt change, refer to line 52
     if (targets.every((target) => target.found)) {
-      //ENDED HERE display game over screen here
       const targetsDiv = document.querySelector(".targetsDiv");
       targetsDiv.className = "targetsDiv hidden";
       const home = document.querySelector(".home");
       home.className = "home";
-      setStart((start = false)); //stops timer
+      targets.forEach((target) => (target.found = false));
+      console.log('all',targets)
+      setStart((start = false));// stops timer
     } else if (start === true) {
       let interval = setInterval(timer, 1000);
       return () => clearInterval(interval);
